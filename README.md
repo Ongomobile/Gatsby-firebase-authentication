@@ -24,7 +24,12 @@ While working on a new Gatsby project I decided to use Firebase for Authenticati
 ## Refferences
 
 [Firebase](https://firebase.google.com/)
+
 [Styled Components Docs](https://styled-components.com/)
+
+[React Docs](https://reactjs.org/docs)
+
+[Gatsby Docs](https://www.gatsbyjs.com/docs/)
 
 ---
 
