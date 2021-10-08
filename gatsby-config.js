@@ -5,9 +5,9 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Gatsby Firebase`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    description: `Gatsby Firebase starter`,
+    author: `Mike Haslam`,
+    siteUrl: `https://www.yourdevguy.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
