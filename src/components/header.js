@@ -75,7 +75,7 @@ const Header = ({ siteTitle }) => {
         <div>
           {!!user && !!user.email && (
             <UserInfo>
-              Hello, {user.username || user.email}
+              Hello, {user.username || ""}
               <div>
                 {!!user.isAdmin && (
                   <>
