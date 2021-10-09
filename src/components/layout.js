@@ -8,6 +8,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { FirebaseContext, useAuth } from "./Firebase"
 
 import Header from "./header"
 import "./layout.css"
@@ -23,8 +24,10 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const { user, firebase, loading } = useAuth()
+
   return (
-    <>
+    <FirebaseContext.Provider value={{ user, firebase, loading }}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -35,7 +38,7 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
       </div>
-    </>
+    </FirebaseContext.Provider>
   )
 }
 

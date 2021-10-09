@@ -1,7 +1,8 @@
-import * as React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import styled from "styled-components"
+import { FirebaseContext } from "./Firebase"
 
 const LogoutLink = styled.span`
   color: white;
@@ -59,6 +60,12 @@ const AdminLink = styled.span`
 `
 
 const Header = ({ siteTitle }) => {
+  const { firebase, user } = useContext(FirebaseContext)
+
+  function handleLogoutClick() {
+    firebase.logout().then(() => navigate("/login"))
+  }
+
   return (
     <HeaderWrapper>
       <HeaderContent>
@@ -66,7 +73,33 @@ const Header = ({ siteTitle }) => {
           <Link to="/">{siteTitle}</Link>
         </h1>
         <div>
-          <UserInfo>User Info</UserInfo>
+          {!!user && !!user.email && (
+            <UserInfo>
+              Hello, {user.username || user.email}
+              <div>
+                {!!user.isAdmin && (
+                  <>
+                    <AdminLink>
+                      <Link to="/add-author">Add author</Link>
+                    </AdminLink>
+                    <Divider />
+                    <AdminLink>
+                      <Link to="/add-book">Add book</Link>
+                    </AdminLink>
+                    <Divider />
+                  </>
+                )}
+                <LogoutLink onClick={handleLogoutClick}>Logout</LogoutLink>
+              </div>
+            </UserInfo>
+          )}
+          {(!user || !user.email) && (
+            <LoginLink>
+              <Link to="/login">Login</Link>
+              <Divider />
+              <Link to="/register">Register</Link>
+            </LoginLink>
+          )}
         </div>
       </HeaderContent>
     </HeaderWrapper>
