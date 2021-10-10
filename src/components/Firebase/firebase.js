@@ -17,14 +17,16 @@ class Firebase {
     }
   }
 
+  getUserProfile({ userId, onSnapshot }) {
+    return this.db
+      .collection("publicProfiles")
+      .where("userId", "==", userId)
+      .limit(1)
+      .onSnapshot(onSnapshot)
+  }
+
   async register({ email, password, username }) {
     await this.auth.createUserWithEmailAndPassword(email, password)
-    // const createProfileCallable = this.functions.httpsCallable(
-    //   "createPublicProfile"
-    // )
-    // return createProfileCallable({
-    //   username,
-    // })
   }
 
   async login({ email, password }) {

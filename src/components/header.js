@@ -53,12 +53,6 @@ const Divider = styled.span`
   background: #ddd;
 `
 
-const AdminLink = styled.span`
-  a {
-    color: white;
-  }
-`
-
 const Header = ({ siteTitle }) => {
   const { firebase, user } = useContext(FirebaseContext)
 
@@ -75,20 +69,8 @@ const Header = ({ siteTitle }) => {
         <div>
           {!!user && !!user.email && (
             <UserInfo>
-              Hello, {user.username || ""}
+              Hello, {user.username || user.email}
               <div>
-                {!!user.isAdmin && (
-                  <>
-                    <AdminLink>
-                      <Link to="/add-author">Add author</Link>
-                    </AdminLink>
-                    <Divider />
-                    <AdminLink>
-                      <Link to="/add-book">Add book</Link>
-                    </AdminLink>
-                    <Divider />
-                  </>
-                )}
                 <LogoutLink onClick={handleLogoutClick}>Logout</LogoutLink>
               </div>
             </UserInfo>
