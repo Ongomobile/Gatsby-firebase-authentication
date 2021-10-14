@@ -19,16 +19,18 @@ While working on a new Gatsby project I decided to use Firebase for Authenticati
 
 ## How To Use
 
-1. Set up Firebase project
+1. Set up Firebase projet
 
    [Firebase console](https://console.firebase.google.com/u/4/)
 
 2. Set up environment varaibles
    Note that environment variables that need to be available in the browser [have to be prefixed](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#client-side-javascript) with GATSBY\_
 
-3. Run npm install
+3. Setup [Firebase cloud functions](https://firebase.google.com/docs/functions)
+   Repository of cloud functions for this [project](https://github.com/Ongomobile/Gatsby-firebase-cloud-functions)
+4. Run npm install
 
-4. Run gatsby develop
+5. Run gatsby develop
 
 ---
 
