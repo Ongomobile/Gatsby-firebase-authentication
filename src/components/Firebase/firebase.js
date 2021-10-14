@@ -27,6 +27,12 @@ class Firebase {
 
   async register({ email, password, username }) {
     await this.auth.createUserWithEmailAndPassword(email, password)
+    const createProfileCallable = this.functions.httpsCallable(
+      "createPublicProfile"
+    )
+    return createProfileCallable({
+      username,
+    })
   }
 
   async login({ email, password }) {
