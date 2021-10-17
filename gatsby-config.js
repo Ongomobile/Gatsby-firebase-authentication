@@ -30,16 +30,6 @@ module.exports = {
           client_x509_cert_url:
             process.env.GATSBY_FIREBASE_CLIENT_X509_CERT_URL,
         },
-        types: [
-          {
-            type: "User",
-            collection: "users",
-            map: doc => ({
-              name: doc.name,
-              email: doc.email,
-            }),
-          },
-        ],
       },
     },
     `gatsby-plugin-react-helmet`,
