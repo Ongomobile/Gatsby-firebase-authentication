@@ -24,7 +24,11 @@ While working on a new Gatsby project I decided to use Firebase for Authenticati
    [Firebase console](https://console.firebase.google.com/u/4/)
 
 2. Set up environment varaibles
+<<<<<<< HEAD
    Note that environment variables that need to be available in the browser [have to be prefixed](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#client-side-javascript) with GATSBY\_ Note there are 2 sets of environment vars 1 for Firebase and 1 for gatsby-firesource plugin
+=======
+   Note that environment variables that need to be available in the browser [have to be prefixed](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#client-side-javascript) with GATSBY\_ see .env.sample
+>>>>>>> f657a217f5678a13141d34e157e78743db51ca79
 
 3. Setup [Firebase cloud functions](https://firebase.google.com/docs/functions)
    Repository of cloud functions for this [project](https://github.com/Ongomobile/Gatsby-firebase-cloud-functions)
