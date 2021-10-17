@@ -10,6 +10,7 @@ const Login = () => {
 
   useEffect(() => {
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       isMounted = false
     }
   }, [])
