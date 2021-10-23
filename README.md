@@ -44,6 +44,8 @@ While working on a new Gatsby project I decided to use Firebase for Authenticati
 
 [Gatsby Docs](https://www.gatsbyjs.com/docs/)
 
+[Tom Phillips courses have really helped me ](https://www.udemy.com/user/e3ccfcc3-dbaa-4ec2-a50f-fe761c2eb901/)
+
 ---
 
 ## License
