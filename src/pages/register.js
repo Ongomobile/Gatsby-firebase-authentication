@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
+import { navigate } from "gatsby"
 import { Form, Input, Button, ErrorMessage } from "../components/common"
 import { FirebaseContext } from "../components/Firebase"
 
@@ -40,6 +41,9 @@ const Register = () => {
           username: formValues.username,
           email: formValues.email,
           password: formValues.password,
+        })
+        .then(() => {
+          navigate("/")
         })
         .catch(error => {
           if (isMounted) {

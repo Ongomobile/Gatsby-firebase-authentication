@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
+import { navigate } from "gatsby"
 import { FirebaseContext } from "../components/Firebase"
 import { Form, Input, Button, ErrorMessage } from "../components/common"
 
@@ -20,6 +21,9 @@ const Login = () => {
 
     firebase
       .login({ email: formValues.email, password: formValues.password })
+      .then(() => {
+        navigate("/")
+      })
       .catch(error => {
         if (isMounted) {
           setErrorMessage(error.message)
