@@ -1,33 +1,49 @@
 import firebaseConfig from "./config"
-import app from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
-import "firebase/functions"
-import "firebase/storage"
+import { initializeApp } from "firebase/app"
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth"
+import {
+  getFirestore,
+  onSnapshot,
+  collection,
+  query,
+  where,
+  limit,
+} from "firebase/firestore"
+import { getFunctions, httpsCallable } from "firebase/functions"
+import { getStorage } from "firebase/storage"
 
-app.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
 class Firebase {
   constructor() {
     if (!firebaseInstance) {
-      this.auth = app.auth()
-      this.db = app.firestore()
-      this.functions = app.functions()
-      this.storage = app.storage()
+      this.auth = getAuth(app)
+      this.db = getFirestore(app)
+      this.functions = getFunctions(app)
+      this.storage = getStorage(app)
     }
   }
 
-  getUserProfile({ userId, onSnapshot }) {
-    return this.db
-      .collection("publicProfiles")
-      .where("userId", "==", userId)
-      .limit(1)
-      .onSnapshot(onSnapshot)
+  getUserProfile({ userId, handler }) {
+    onSnapshot(
+      query(
+        collection(this.db, "publicProfiles"),
+        where("userId", "==", userId),
+        limit(1)
+      ),
+      docs => handler(docs)
+    )
   }
 
   async register({ email, password, username }) {
-    await this.auth.createUserWithEmailAndPassword(email, password)
-    const createProfileCallable = this.functions.httpsCallable(
+    await createUserWithEmailAndPassword(this.auth, email, password)
+    const createProfileCallable = httpsCallable(
+      this.functions,
       "createPublicProfile"
     )
     return createProfileCallable({
@@ -36,11 +52,11 @@ class Firebase {
   }
 
   async login({ email, password }) {
-    return this.auth.signInWithEmailAndPassword(email, password)
+    return signInWithEmailAndPassword(this.auth, email, password)
   }
 
   async logout() {
-    await this.auth.signOut()
+    await signOut(this.auth)
   }
 }
 
