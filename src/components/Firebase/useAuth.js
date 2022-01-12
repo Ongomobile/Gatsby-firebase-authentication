@@ -19,7 +19,7 @@ function useAuth() {
         if (userResult) {
           publicProfileUnsubscribe = firebaseInstance.getUserProfile({
             userId: userResult.uid,
-            onSnapshot: r => {
+            handler: r => {
               firebaseInstance.auth.currentUser.getIdTokenResult(true).then(
                 setUser({
                   ...userResult,
